@@ -7,15 +7,14 @@ If the mail is downloaded it moves it to the `Archive` folder.
 
 # Install
 
-* Install Node
+* Install NodeJs
 * `npm i --save-dev @wdio/cli`
-* Configure the following environment variables: 
-* * PROTONMAIL_USER
-* * PROTONMAIL_PASSWORD
-* * PROTONMAIL_DECRYPT_PASSWORD
 
 If you have a single password for the login and the decryption, then the code might need some tweaking...
 
 # Run
 
-`npx wdio wdio.conf.js`
+* `export PROTONMAIL_USER=<your username>` (or `SET` on windows)
+* `export PROTONMAIL_PASSWORD=<your password>` (or `SET` on windows)
+* `export PROTONMAIL_DECRYPT_PASSWORD=<your decrypt password>`  (This is optional)
+* `npx wdio wdio.conf.js`

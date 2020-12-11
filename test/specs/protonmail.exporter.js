@@ -14,10 +14,12 @@ describe('Protonmail exporter', () => {
 
         LoginPage.login(process.env.PROTONMAIL_USER, process.env.PROTONMAIL_PASSWORD);
 
-        DecryptPage.login(process.env.PROTONMAIL_DECRYPT_PASSWORD);
+        if (process.env.PROTONMAIL_DECRYPT_PASSWORD) {
+            DecryptPage.login(process.env.PROTONMAIL_DECRYPT_PASSWORD);
+        }
         expect(MainPage.mailList).toBeExisting();
 
-        if (MainPage.modalConfirm) {
+        if (MainPage.modalConfirm.isExisting()) {
             MainPage.modalConfirm.click()
         }
 

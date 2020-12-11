@@ -58,14 +58,28 @@ class MainPage extends Page {
     saveAndArchive() {
         if (this.retry(() => this.dropdown.isExisting())) {
             this.dropdown.click()
-            if (this.retry(() => this.downloadButton.isExisting())) {
+            if (this.isDownloadAvailable()) {
                 this.downloadButton.click()
-            }
-            if (this.retry(() => this.archiveButton.isExisting())) {
-                this.archiveButton.click()
-                browser.pause(2000)
+                browser.pause(1000)
+                if (this.isArchiveAvailable()) {
+                    this.archiveButton.click()
+                    browser.pause(1000)
+                }
             }
         }
+    }
+
+    isDownloadAvailable() {
+        return this.retry(() =>
+            this.downloadButton.isExisting() &&
+            this.downloadButton.isClickable())
+    }
+
+    isArchiveAvailable() {
+        return this.retry(() =>
+            this.archiveButton.isExisting() &&
+            this.archiveButton.isClickable()
+        )
     }
 
 
